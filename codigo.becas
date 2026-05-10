@@ -1,0 +1,28 @@
+STAR
+//crear variables de los contadores
+VAR aceptados, rechazado_edad, rechazado_prom, rechazado_ingreso = 0
+VAR promedio_minimo = 90.5
+
+LOOP i IN range (5):
+    OUT "Bienvenido alumno No." + i
+    INPUT "Edad: " edad
+    INPUT "Promedio: " promedio
+    INPUT "Ingreso: " ingreso
+    CHECK:
+        IF (!(edad <= 18) && !(edad >= 25) && promedio >= promedio_minimo && !(ingreso >= 5000)) SO:
+            aceptados = aceptados + 1
+            OUT "Beca aceptada con promedio " + promedio
+        ELSEIF (edad <= 18 || edad >= 25) SO:
+            rechazado_edad = rechazado_edad + 1
+            OUT "Rechazado: EDAD"
+        ELSEIF (ingreso >= 5000) SO:
+            rechazado_ingreso = rechazado_ingreso + 1
+            OUT "Rechazado: INGRESO"
+        ELSE:
+            rechazado_prom = rechazado_prom + 1
+            OUT "Rechazado: PROMEDIO"
+    END_CHECK
+END_LOOP
+
+OUT "Total: " + aceptados
+END

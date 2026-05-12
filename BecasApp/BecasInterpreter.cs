@@ -84,6 +84,11 @@ namespace BecasApp
                 Console.Write(prompt);
                 string? text = Console.ReadLine();
 
+                if (text == null)
+                {
+                    throw new InvalidOperationException($"No se recibio un valor para '{variableName}'.");
+                }
+
                 if (double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double value))
                 {
                     variables[variableName] = value;

@@ -39,7 +39,7 @@ public partial class BecasParser : Parser {
 		START=1, END=2, VAR=3, LOOP=4, IN=5, RANGE=6, CHECK=7, IF=8, SO=9, ELSEIF=10, 
 		ELSE=11, END_CHECK=12, END_LOOP=13, OUT=14, INPUT=15, OP_ASIG=16, OP_ARIT=17, 
 		OP_REL=18, OP_OR=19, OP_AND=20, OP_NOT=21, PARENT_I=22, PARENT_D=23, COLON=24, 
-		COMMA=25, ID=26, INT=27, FLOAT=28, STRING=29, COMMENT=30, WS=31;
+		COMMA=25, ID=26, FLOAT=27, INT=28, STRING=29, COMMENT=30, WS=31;
 	public const int
 		RULE_start_rule = 0, RULE_instrucciones = 1, RULE_instruccion = 2, RULE_var_decl = 3, 
 		RULE_input_datos = 4, RULE_input_usuario = 5, RULE_asignacion_suma = 6, 
@@ -64,7 +64,7 @@ public partial class BecasParser : Parser {
 		null, "START", "END", "VAR", "LOOP", "IN", "RANGE", "CHECK", "IF", "SO", 
 		"ELSEIF", "ELSE", "END_CHECK", "END_LOOP", "OUT", "INPUT", "OP_ASIG", 
 		"OP_ARIT", "OP_REL", "OP_OR", "OP_AND", "OP_NOT", "PARENT_I", "PARENT_D", 
-		"COLON", "COMMA", "ID", "INT", "FLOAT", "STRING", "COMMENT", "WS"
+		"COLON", "COMMA", "ID", "FLOAT", "INT", "STRING", "COMMENT", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -968,8 +968,8 @@ public partial class BecasParser : Parser {
 				}
 				break;
 			case ID:
-			case INT:
 			case FLOAT:
+			case INT:
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 152; comparacion();
@@ -1065,7 +1065,7 @@ public partial class BecasParser : Parser {
 			{
 			State = 159;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID) | (1L << INT) | (1L << FLOAT))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID) | (1L << FLOAT) | (1L << INT))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -1113,7 +1113,7 @@ public partial class BecasParser : Parser {
 			{
 			State = 161;
 			_la = TokenStream.LA(1);
-			if ( !(_la==INT || _la==FLOAT) ) {
+			if ( !(_la==FLOAT || _la==INT) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -1163,7 +1163,7 @@ public partial class BecasParser : Parser {
 			{
 			State = 163;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID) | (1L << INT) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ID) | (1L << FLOAT) | (1L << INT) | (1L << STRING))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -1323,7 +1323,7 @@ public partial class BecasParser : Parser {
 		'\x2', '\x2', 'W', 'X', '\a', '\x6', '\x2', '\x2', 'X', 'Y', '\a', '\x1C', 
 		'\x2', '\x2', 'Y', 'Z', '\a', '\a', '\x2', '\x2', 'Z', '[', '\a', '\b', 
 		'\x2', '\x2', '[', '\\', '\a', '\x18', '\x2', '\x2', '\\', ']', '\a', 
-		'\x1D', '\x2', '\x2', ']', '^', '\a', '\x19', '\x2', '\x2', '^', '_', 
+		'\x1E', '\x2', '\x2', ']', '^', '\a', '\x19', '\x2', '\x2', '^', '_', 
 		'\a', '\x1A', '\x2', '\x2', '_', '`', '\x5', '\x4', '\x3', '\x2', '`', 
 		'\x61', '\a', '\xF', '\x2', '\x2', '\x61', '\x11', '\x3', '\x2', '\x2', 
 		'\x2', '\x62', '\x63', '\a', '\t', '\x2', '\x2', '\x63', '\x64', '\a', 

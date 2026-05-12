@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BecasApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+412155ce94b6deff7f6ca284dd3915991ee55e01")]
 [assembly: System.Reflection.AssemblyProductAttribute("BecasApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BecasApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

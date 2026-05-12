@@ -32,3 +32,4 @@ C:/Users/luisi/Desktop/Proyecto Becas/BecasApp/obj/Debug/net10.0/ref/BecasApp.dl
 /Users/arletteguzmandelacruz/Downloads/Proyecto Becas/BecasApp/obj/Debug/net10.0/BecasApp.pdb
 /Users/arletteguzmandelacruz/Downloads/Proyecto Becas/BecasApp/obj/Debug/net10.0/BecasApp.genruntimeconfig.cache
 /Users/arletteguzmandelacruz/Downloads/Proyecto Becas/BecasApp/obj/Debug/net10.0/ref/BecasApp.dll
+/Users/arletteguzmandelacruz/Downloads/Proyecto Becas/BecasApp/obj/Debug/net10.0/BecasApp.sourcelink.json

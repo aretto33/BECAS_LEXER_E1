@@ -33,8 +33,8 @@ COMMA : ',' ;
 
 // Valores basicos: nombres de variables, enteros, decimales y textos entre comillas.
 ID : [a-zA-Z_][a-zA-Z0-9_]* ;
-INT : [0-9]+ ;
-FLOAT : [0-9]+ '.' [0-9]+ ;
+FLOAT : '-'? [0-9]+ '.' [0-9]+ ;
+INT : '-'? [0-9]+ ;
 STRING : '"' .*? '"' ;
 
 // Los comentarios y espacios se ignoran para que no afecten la sintaxis.

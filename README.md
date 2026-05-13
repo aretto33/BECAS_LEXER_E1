@@ -34,7 +34,7 @@ chmod +x instalar.sh
 ./instalar.sh
 ```
 
-El script revisa si tienes `dotnet` y `java`, restaura paquetes de NuGet y muestra el comando para ejecutar el programa.
+El script revisa si tienes `dotnet` y `java`, restaura paquetes de NuGet y muestra el comando para analizar el programa.
 
 ## Ejecutar el programa
 
@@ -42,14 +42,17 @@ El script revisa si tienes `dotnet` y `java`, restaura paquetes de NuGet y muest
 dotnet run --project BecasApp/BecasApp.csproj -- codigo.becas
 ```
 
-El archivo [codigo.becas](codigo.becas) contiene el programa que se va a analizar e interpretar.
+El archivo [codigo.becas](codigo.becas) contiene el programa que se va a analizar.
 
-Al ejecutar el programa se muestran cuatro secciones:
+Al ejecutar el proyecto se muestran estos apartados de analisis:
 
 - `ANALISIS LEXICO`: muestra los tokens encontrados, con linea, columna, tipo de token y texto.
-- `ANALISIS SINTACTICO / GRAMATICA`: muestra si el codigo cumple la gramatica, las producciones principales y el arbol sintactico.
+- `GRAMATICA`: muestra la gramatica formal `G = (N, T, P, S)` con no terminales, terminales, simbolo inicial y producciones.
+- `ANALISIS SINTACTICO DESCENDENTE`: muestra una tabla con `Entrada`, `Pila` y `Regla`, similar al analisis hecho a mano.
+- `ARBOL DE DERIVACION`: aparece dentro del analisis sintactico y resume la estructura del programa por reglas.
 - `ANALISIS SEMANTICO`: revisa declaraciones, variables, entradas, salidas, sumas y comparaciones.
-- `EJECUCION`: ejecuta el programa si no hay errores sintacticos ni semanticos.
+
+El proyecto no ejecuta la logica del programa al final; solo muestra los analisis solicitados.
 
 Ejemplo de salida:
 
@@ -59,16 +62,30 @@ Linea  1, Columna  0 | START        | STAR
 Linea  2, Columna  0 | VAR          | VAR
 Linea  2, Columna  4 | ID           | aceptados
 
-========== ANALISIS SINTACTICO / GRAMATICA ==========
+========== GRAMATICA ==========
 >>> [EXITO]: El codigo cumple con la gramatica.
-Regla inicial: start_rule -> START instrucciones END
+G = (N, T, P, S)
+S = start_rule
+1. start_rule -> START instrucciones END
+
+========== ANALISIS SINTACTICO DESCENDENTE ==========
+Entrada              | Pila                          | Regla
+START var_decl END   | start_rule                    | start_rule -> START instrucciones END
+var_decl END         | instrucciones END             | consume START
+END                  | END                           | instrucciones -> epsilon
+
+Arbol de derivacion:
+start_rule
+|-- START
+|-- instrucciones
+|   `-- var_decl [VAR aceptados = 0]
+`-- END
 
 ========== ANALISIS SEMANTICO ==========
 Declaracion valida: aceptados, rechazado_edad, rechazado_prom, rechazado_ingreso = 0
 Resultado: analisis semantico correcto.
 
-========== EJECUCION ==========
->>> Ejecutando programa...
+>>> Analisis finalizado. No se ejecuta el programa; solo se muestran las fases de analisis.
 ```
 
 ## Ejemplo de codigo
@@ -189,14 +206,14 @@ salida        : OUT valor_salida (OP_ARIT valor_salida)? ;
 
 ### Analisis semantico
 
-El analisis semantico esta implementado en [BecasSemanticAnalyzer.cs](BecasApp/BecasSemanticAnalyzer.cs). Antes de ejecutar, revisa que el programa tenga sentido:
+El analisis semantico esta implementado en [BecasSemanticAnalyzer.cs](BecasApp/BecasSemanticAnalyzer.cs). Revisa que el programa tenga sentido antes de dar el analisis por correcto:
 
 - Las variables declaradas se registran en una tabla de simbolos.
 - Las variables usadas en salidas, sumas y comparaciones deben tener un valor previo.
 - Las entradas `INPUT` guardan valores numericos.
 - Las sumas trabajan con expresiones numericas.
 - Las condiciones usan comparaciones validas con `<=` o `>=`.
-- Si hay errores semanticos, el programa los muestra y no ejecuta el codigo.
+- Si hay errores semanticos, el programa los muestra.
 
 ## Regenerar ANTLR
 

@@ -9,7 +9,10 @@ Lenguaje sencillo del Equipo 1 para probar reglas con variables, ciclos, condici
 - Java, solo si vas a regenerar los archivos de ANTLR desde las gramaticas `.g4`.
 - <img width="361" height="133" alt="image" src="https://github.com/user-attachments/assets/a59b0754-1e9c-4ed6-94b9-ca277afa5475" />
 ```text
-ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files. It's widely used to build languages, tools, and frameworks. From a grammar, ANTLR generates a parser that can build and walk parse trees.
+ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading,
+ processing, executing, or translating structured text or binary files. It's widely used
+ to build languages, tools, and frameworks. From a grammar, ANTLR generates a parser that
+ can build and walk parse trees.
 ```
 
 
